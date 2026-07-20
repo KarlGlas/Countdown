@@ -28,9 +28,10 @@ function updateCountdown() {
     let target = new Date(now.getFullYear(), 10, 22, 0, 0, 0);
 
     // Falls der 21.11. dieses Jahres vorbei ist -> nächstes Jahr
-    if (now > target) {
-        target = new Date(now.getFullYear() + 1, 10, 21, 0, 0, 0);
-    }
+    if (now >= target) {
+        document.getElementById("countdown").textContent =
+            "0T 0h 0m 0s";
+        return;
 
     const diff = target - now;
 
