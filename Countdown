@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Countdown</title>
+<style>
+body{
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#111;
+    color:#fff;
+    font:700 4rem Arial,sans-serif;
+}
+</style>
+</head>
+<body>
+
+<div id="countdown"></div>
+
+<script>
+function updateCountdown() {
+    const now = new Date();
+
+    // Ziel: 21. November (00:00 Uhr)
+    let target = new Date(now.getFullYear(), 10, 22, 0, 0, 0);
+
+    // Falls der 21.11. dieses Jahres vorbei ist -> nächstes Jahr
+    if (now > target) {
+        target = new Date(now.getFullYear() + 1, 10, 21, 0, 0, 0);
+    }
+
+    const diff = target - now;
+
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor(diff % 86400000 / 3600000);
+    const minutes = Math.floor(diff % 3600000 / 60000);
+    const seconds = Math.floor(diff % 60000 / 1000);
+
+    document.getElementById("countdown").textContent =
+        `${days}T ${hours}h ${minutes}m ${seconds}s`;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
